@@ -36,13 +36,20 @@ function DetailsScreen({ navigation }) {
         <Modal visible={ modal }
         animationType="slide" transparent={true}
         onRequestClose={_ => setModal(false) }>
-            <View style={styles.modalContainer}>
+            <TouchableOpacity style={styles.modalBackground} onPress={_ => setModal(false)}>
 
-                <Text>123123</Text>
-                {/* For example, I am adding a close button */}
-                <TouchableOpacity style={{ alignSelf: 'flex-end' }} onPress={_ => setModal(false) }>
-                    <Icon type="FontAwesome" name='times' style={ styles.closeIcon } />
-                </TouchableOpacity>
+            </TouchableOpacity>
+            <View style={styles.modalContainer}>
+                <View style={styles.modalHeader}>
+                  <Text style={{flex:1, textAlign:'center', fontSize:20}}>add stock</Text>
+                  <TouchableOpacity style={styles.closeicon} onPress={_ => setModal(false) }>
+                      <Icon name="close" size={30} color="#333" />
+                  </TouchableOpacity>
+                </View>
+                <View>
+                  <Text>123123</Text>
+                </View>
+
             </View>
         </Modal>
 
@@ -108,6 +115,24 @@ function DetailsScreen({ navigation }) {
        height: '70%',
        borderTopRightRadius: 16,
        borderTopLeftRadius: 16,
+       zIndex: 2,
+
+      },
+      modalBackground: {
+        width: '100%',
+        height: '100%',
+        // backgroundColor: 'rgba(0,0,0,0.3)',
+        zIndex: 1
+      },
+      modalHeader:{
+        // backgroundColor: 'red',
+        flexDirection: 'row',
+        marginTop: 20,
+        alignItems: 'center'
+      },
+      closeicon:{
+        position: 'absolute',
+        right: 20,
 
       }
 
