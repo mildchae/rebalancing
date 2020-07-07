@@ -2,7 +2,7 @@ import React, { useRef, useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Animated, Platform, ScrollView, TouchableOpacity, Dimensions  } from 'react-native';
 import AddButton from '../components/add-button'
 
-const HEADER_MIN_HEIGHT = 80
+const HEADER_MIN_HEIGHT = 70
 const HEADER_MAX_HEIGHT = 200
 
 function HomeScreen({ navigation }) {
