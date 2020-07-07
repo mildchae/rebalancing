@@ -1,45 +1,45 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Text, View, StyleSheet, Animated, Platform, ScrollView, TouchableOpacity } from 'react-native';
+import { Text, View, StyleSheet, Animated, Platform, ScrollView, TouchableOpacity, Dimensions  } from 'react-native';
 
 const HEADER_MIN_HEIGHT = 80
 const HEADER_MAX_HEIGHT = 200
 
 function HomeScreen({ navigation }) {
   
-  const scrollYAnimatedValue  =  useRef(new Animated.Value(0)).current
-  const [data, setData] = useState([])
+    const scrollYAnimatedValue  =  useRef(new Animated.Value(0)).current
+    const [data, setData] = useState([])
 
-  useEffect(() => {
-    setData([...Array(1).keys()])
-  }, [])
+    useEffect(() => {
+      setData([...Array(1).keys()])
+    }, [])
 
-  const headerHeight = scrollYAnimatedValue.interpolate(
-    {
-      inputRange: [0, (HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT)],
-      outputRange: [HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT],
-      extrapolate: 'clamp'
+    const headerHeight = scrollYAnimatedValue.interpolate(
+      {
+        inputRange: [0, (HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT)],
+        outputRange: [HEADER_MAX_HEIGHT, HEADER_MIN_HEIGHT],
+        extrapolate: 'clamp'
+      }
+    )
+    const borderRadius = scrollYAnimatedValue.interpolate(
+      {
+        inputRange: [0, (HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT)],
+        outputRange: [25, 5],
+        extrapolate: 'clamp'
+      }
+    )
+    const headerBackground = scrollYAnimatedValue.interpolate(
+      {
+        inputRange: [0, (HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT)],
+        outputRange: ['rgb(133,162,228)', 'rgb(255,255,255)'],
+        extrapolate: 'clamp'
+      }
+    )
+    const test = () => {
+      setData([...Array(data.length+1).keys()])
     }
-  )
-  const borderRadius = scrollYAnimatedValue.interpolate(
-    {
-      inputRange: [0, (HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT)],
-      outputRange: [25, 5],
-      extrapolate: 'clamp'
-    }
-  )
-  const headerBackground = scrollYAnimatedValue.interpolate(
-    {
-      inputRange: [0, (HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT)],
-      outputRange: ['rgb(133,162,228)', 'rgb(255,255,255)'],
-      extrapolate: 'clamp'
-    }
-  )
-  const test = () => {
-    setData([...Array(data.length+1).keys()])
-  }
-  useEffect( () => {
-    console.log(headerHeight)
-  })
+    useEffect( () => {
+      // console.log(headerHeight)
+    })
 
   
     return (
@@ -50,7 +50,10 @@ function HomeScreen({ navigation }) {
         scrollEventThrottle={16}
         showsVerticalScrollIndicator = {false}
         onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { y: scrollYAnimatedValue } } }]
+          [{ nativeEvent: { contentOffset: { y: scrollYAnimatedValue } } }],
+          {
+            useNativeDriver: false,
+          }
         )}
       >
           {
@@ -81,13 +84,6 @@ function HomeScreen({ navigation }) {
         </Text>
       </Animated.View>
     </View>
-      // <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-      //   <Text style={styles.text}>Home Screen</Text>
-      //   <Button
-      //     title="Go to Details"
-      //     onPress={() => navigation.navigate('Details')}
-      //   />
-      // </View>
     );
   }
 
@@ -96,7 +92,7 @@ function HomeScreen({ navigation }) {
       container: {
         flex: 1,
         justifyContent: 'center',
-        alignItems: 'center'
+        alignItems: 'center',
       },
       animatedHeaderContainer: {
         position: 'absolute',
@@ -113,11 +109,14 @@ function HomeScreen({ navigation }) {
         color: 'white',
         fontSize: 18
       },
+      scrollView:{
+        flexGrow:1,
+      },
       item: {
         backgroundColor: '#eee',
         margin: 8,
         height: 155,
-        width: 300,
+        width: Dimensions.get('window').width * 0.8,
         borderRadius: 16,
         justifyContent: 'center',
         alignItems: 'center',
@@ -133,7 +132,7 @@ function HomeScreen({ navigation }) {
         fontSize: 16
       },
       addButton: {
-        width: 300,
+        width: Dimensions.get('window').width * 0.8,
         height: 40,
         margin: 8,
         borderRadius: 8,
