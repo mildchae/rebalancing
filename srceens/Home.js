@@ -1,5 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Animated, Platform, ScrollView, TouchableOpacity, Dimensions  } from 'react-native';
+import AddButton from '../components/add-button'
 
 const HEADER_MIN_HEIGHT = 80
 const HEADER_MAX_HEIGHT = 200
@@ -64,9 +65,13 @@ function HomeScreen({ navigation }) {
                 </View>
               ))
           }
-          <TouchableOpacity activeOpacity={0.8} style={styles.addButton} onPress={() => navigation.navigate('Details')}>
+          {/* <TouchableOpacity activeOpacity={0.8} style={styles.addButton} onPress={() => navigation.navigate('Details')}>
             <Text style={styles.addButtonText}>+</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
+          <AddButton title='++' onPress={test}>
+          </AddButton>
+          <AddButton title='create' onPress={() => navigation.navigate('Details')}>
+          </AddButton>
 
       </ScrollView>
 
