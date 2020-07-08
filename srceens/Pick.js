@@ -19,9 +19,18 @@ const DATA = [
   },
 ];
 
-function Item({ title, setTicker, desc }) {
+function Item({ title, desc, setTicker, setFiltered}) {
+  const touchTicker = () => {
+    setTicker(title)
+    let temp = DATA.filter( data => {
+      let _text = title.toLowerCase()
+      let _title = data.title.toLowerCase()
+      return _title.indexOf(_text) >= 0
+    })
+    setFiltered(temp)
+  }
   return (
-    <TouchableOpacity style={styles.itemContainer} onPress={()=>{setTicker(title)}}>
+    <TouchableOpacity style={styles.itemContainer} onPress={touchTicker}>
       <View style={styles.item}>
         <Text style={styles.title}>{title}</Text>
         <Text style={{marginLeft:10}}>{desc}</Text>
@@ -33,7 +42,17 @@ function Item({ title, setTicker, desc }) {
 
 function PickScreen({ navigation }) {
   const [ticker, setTicker] = useState('')
+  const [filterd, setFiltered] = useState(DATA)
 
+  const onChangeTicker = (text) => {
+    setTicker(text)
+    let temp = DATA.filter( data => {
+      let _text = text.toLowerCase()
+      let _title = data.title.toLowerCase()
+      return _title.indexOf(_text) >= 0
+    })
+    setFiltered(temp)
+  }
   return(
     <View style={styles.Container}>
       <View style={styles.HeaderContainer}>
@@ -42,7 +61,7 @@ function PickScreen({ navigation }) {
         </TouchableOpacity>
         <TextInput
                 style={styles.textInput}
-                onChangeText={text => setTicker(text)}
+                onChangeText={onChangeTicker}
                 value={ticker}
                 placeholder="ticker"
               />
@@ -52,8 +71,8 @@ function PickScreen({ navigation }) {
       </View>
       <View style={styles.Content}>
         <FlatList
-          data={DATA}
-          renderItem={({ item }) => <Item title={item.title} desc={item.desc} setTicker={setTicker} />}
+          data={filterd}
+          renderItem={({ item }) => <Item title={item.title} desc={item.desc} setTicker={setTicker} setFiltered={setFiltered} />}
           keyExtractor={item => item.id}
         />
       </View>
@@ -86,7 +105,6 @@ const styles = StyleSheet.create(
       alignItems: 'center',
       borderBottomLeftRadius: 8,
       borderBottomRightRadius: 8,
-      // paddingTop: Constants.statusBarHeight,
       backgroundColor: 'rgb(133,162,228)',
       
     },
@@ -95,7 +113,6 @@ const styles = StyleSheet.create(
       left: 20,
       width: 30,
       height: 30,
-      // backgroundColor: 'red'
     },
     headerText: {
       color: 'white',
@@ -126,11 +143,7 @@ const styles = StyleSheet.create(
     
     },
     item: {
-      // backgroundColor: '#f9c2ff',
       flexDirection: 'row',
-
-      // padding: 20,
-      // marginHorizontal: 16,
     },
     title: {
       fontSize: 26,
