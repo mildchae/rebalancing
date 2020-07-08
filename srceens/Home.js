@@ -143,7 +143,7 @@ function HomeScreen({ navigation }) {
         borderRadius: 8,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'rgb(150,150,150)'
+        backgroundColor: 'rgb(150,150,150)',
       },
       addButtonText: {
         color: 'white',

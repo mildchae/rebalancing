@@ -17,6 +17,81 @@ const DATA = [
     title: 'SBUX',
     desc: 'starbucks',
   },
+  {
+    id: '4',
+    title: 'WWWW',
+    desc: 'Apple Inc.',
+  },
+  {
+    id: '5',
+    title: 'SQQQ',
+    desc: 'Tesla Inc.',
+  },
+  {
+    id: '6',
+    title: 'SBUX',
+    desc: 'starbucks',
+  },
+  {
+    id: '7',
+    title: 'APPL',
+    desc: 'Apple Inc.',
+  },
+  {
+    id: '8',
+    title: 'TSLA',
+    desc: 'Tesla Inc.',
+  },
+  {
+    id: '9',
+    title: 'SBUX',
+    desc: 'starbucks',
+  },
+  {
+    id: '10',
+    title: 'APL',
+    desc: 'Apple Inc.',
+  },
+  {
+    id: '11',
+    title: 'QQQQ',
+    desc: 'Tesla Inc.',
+  },
+  {
+    id: '12',
+    title: 'SBUX',
+    desc: 'starbucks',
+  },
+  {
+    id: '13',
+    title: 'APPL',
+    desc: 'Apple Inc.',
+  },
+  {
+    id: '14',
+    title: 'TSLA',
+    desc: 'Tesla Inc.',
+  },
+  {
+    id: '15',
+    title: 'SBUX',
+    desc: 'starbucks',
+  },
+  {
+    id: '16',
+    title: 'APPL',
+    desc: 'Apple Inc.',
+  },
+  {
+    id: '17',
+    title: 'TSLA',
+    desc: 'Tesla Inc.',
+  },
+  {
+    id: '18',
+    title: 'SBUX',
+    desc: 'starbucks',
+  },
 ];
 
 function Item({ title, desc, setTicker, setFiltered}) {
@@ -146,7 +221,10 @@ const styles = StyleSheet.create(
       flexDirection: 'row',
     },
     title: {
-      fontSize: 26,
+      fontSize: 18,
+      textAlign: 'center',
+      width: 60,
+      fontWeight: 'bold'
     },
     line:{
       borderWidth: 0.5,

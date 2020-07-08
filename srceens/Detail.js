@@ -26,7 +26,7 @@ function DetailsScreen({ navigation }) {
           <View style = {styles.lineStyle} />
           
           {/* <AddButton title='add stock' onPress={() => {setModal(true)}} /> */}
-          <AddButton title='add stock' onPress={() => navigation.navigate('pick')} />
+          <AddButton title='add ticker' onPress={() => navigation.navigate('pick')} />
 
         </View>
 
