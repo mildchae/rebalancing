@@ -11,6 +11,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from './srceens/Home'
 import DetailsScreen from './srceens/Detail'
+import PickScreen from './srceens/Pick';
 
  
 const Stack = createStackNavigator();
@@ -24,6 +25,8 @@ function App() {
         }}>
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen name="pick" component={PickScreen} />
+
       </Stack.Navigator>
     </NavigationContainer>
   );
